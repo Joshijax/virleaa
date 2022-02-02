@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>confirmation</title>
+</head>
+
+<body style="font-family: Rubik, sans-serif;">
+    <form>
+      <script src="https://api.ravepay.co/flwv3-pug/getpaidx/api/flwpbf-inline.js"></script>
+        <h3>SUPPORT NATURE WITH AS LOW AS $1</h3>
+        <button type="button" onClick="payWithRave()">Donate Here</button>
+    </form>
+    <script>
+        const publicKey = "{{ key }}";
+        const new_txt = "{{ txref }}";
+        function payWithRave() {
+            var x = getpaidSetup({
+                PBFPubKey: publicKey,
+                customer_email: "joshijax08@gmail.com",
+                amount: {{amount}},
+                customer_phone: "08170317071",
+                currency: "NGN",
+                txref: new_txt,
+                custom_title: "Virlea Course payment",
+                onclose: function() {},
+                callback: function(response) {
+                    
+                    var flw_ref = response.tx.flwRef;
+                    console.log("This is the response returned after a charge", response);
+                    console.log(response.tx.flwRef)
+                    if (
+                        response.tx.chargeResponse == "00" ||
+                        response.tx.chargeResponse == "0"
+                    ) {
+                        window.location.href = "/ravepay/verify-payment/{{txref}}/?amount={{amount}}&code="+flw_ref
+                    } else {
+                        window.location.href = "/ravepay/verify-payment/{{txref}}/?amount={{amount}}&code="+flw_ref
+                    }
+                    
+                    {% comment %} x.close(); {% endcomment %}
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
+{% comment %} {% load ravepay %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sample payment page</title>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+<!-- {% ravepay_button button_class="red" amount=600.5 country="ZA" currency="ZAR" email="gbozee@example.com" description="Buy Goods" ref="KEJCALTPEXKX" redirect_url="http://localhost:8000/ravepay/verify-payment/KEJCALTPEXKX/?amount=600" %} -->
+    {% ravepay_button button_class="red" amount=50 currency="NGN" email="joshijax08@gmail.com" description="virlea course payment"  %}
+</body>
+
+</html> {% endcomment %}
