@@ -267,5 +267,5 @@ if USE_S3:
     PUBLIC_MEDIA_LOCATION = 'media'
     MEDIA_URL = f'{S3_URL}/{PUBLIC_MEDIA_LOCATION}/'
     MEDIA_ROOT = 'https://%s.s3.amazonaws.com/media/'  % AWS_STORAGE_BUCKET_NAME 
-    DEFAULT_FILE_STORAGE = 'bona_blog.storage_backends.PublicMediaStorage'
+    DEFAULT_FILE_STORAGE = 'study.storage_backends.PublicMediaStorage'
     
