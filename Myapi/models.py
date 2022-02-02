@@ -108,7 +108,7 @@ class Course(models.Model):
     published = models.CharField(max_length = 500, blank=True)
     publish = models.BooleanField(default='False')
     tags = models.ManyToManyField(Tag,related_name='tags', blank=True)
-    ratings = GenericRelation(Rating, related_query_name='rate')
+    ratings = GenericRelation(Rating, related_query_name='rate', blank=True)
     steps = models.IntegerField(default= 0 )
     created_date = models.DateTimeField(auto_now_add=True)
 
