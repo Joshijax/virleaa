@@ -241,17 +241,17 @@ AUTHENTICATION_BACKENDS = (
 
 USE_S3 = True
 if USE_S3:
-    AWS_ACCESS_KEY_ID = 'AKIASXSK3YWJHKS6CAF3'
-    AWS_SECRET_ACCESS_KEY = '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'
-    AWS_STORAGE_BUCKET_NAME = 'joshijax'
+    AWS_ACCESS_KEY_ID = 'AKIA47UAIC2MF6XFTC5I'
+    AWS_SECRET_ACCESS_KEY = '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'
+    AWS_STORAGE_BUCKET_NAME = 'legiter'
     # AWS_LOCATION = 'static'
-    AWS_S3_SECURE_URLS = True
+    AWS_S3_SECURE_URLS = False
     AWS_S3_FILE_OVERWRITE = False
     AWS_DEFAULT_ACL = None
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
     # STATIC_LOCATION = 'static'
-    # STATICFILES_STORAGE = 'study.storage_backends.StaticStorage'
+    # STATICFILES_STORAGE = 'web.storage_backends.StaticStorage'
     AWS_S3_CUSTOM_DOMAIN='%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
     # STATICFILES_DIRS = [
     #     os.path.join(BASE_DIR, 'static'),
@@ -265,8 +265,7 @@ if USE_S3:
 
     S3_URL = 'https://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME  
     PUBLIC_MEDIA_LOCATION = 'media'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-    MEDIA_ROOT = 'https://%s.s3.amazonaws.com//media/'  % AWS_STORAGE_BUCKET_NAME 
-    DEFAULT_FILE_STORAGE = 'study.storage_backends.PublicMediaStorage'
-
- 
+    MEDIA_URL = f'{S3_URL}/{PUBLIC_MEDIA_LOCATION}/'
+    MEDIA_ROOT = 'https://%s.s3.amazonaws.com/media/'  % AWS_STORAGE_BUCKET_NAME 
+    DEFAULT_FILE_STORAGE = 'bona_blog.storage_backends.PublicMediaStorage'
+    
