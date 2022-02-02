@@ -250,27 +250,27 @@ class Course_contentSerializer(serializers.HyperlinkedModelSerializer):
 class CourseSerializer(serializers.HyperlinkedModelSerializer):
     course_content = Course_contentSerializer(many=True, read_only=True)
     course_resourse = Course_resourceSerializer(many=True, read_only=True)
-    rating = feedbackSerializer(many=True, read_only=False)
-    test = serializers.SerializerMethodField()
+    # rating = feedbackSerializer(many=True, read_only=False)
+    # test = serializers.SerializerMethodField()
     # tags = tagSerializer(many=True, read_only=False)
     # tags=tagSerializer(many=True, read_only=False)
-    class Meta:
+    class Meta: 
         model = Course
-        fields = ('id', 'test', 'url', 'rating', 'Course_category', 'Course_category_type', 'Course_name', 'Course_duration', 'description', 'file', 'About_course', 'amount', 'course_content','instructors', 'institution', 'certificate_name', 'published', 'tags', 'course_resourse', 'steps','created_date', 'certificate')
+        fields = ('id', 'url', 'Course_category', 'Course_category_type', 'Course_name', 'Course_duration', 'description', 'file', 'About_course', 'amount', 'course_content','instructors', 'institution', 'certificate_name', 'published', 'tags', 'course_resourse', 'steps','created_date', 'certificate')
 
-    def get_test(self, obj):
-        if obj.rating.exists():
-            obj2 = feedback.objects.filter(item=obj).values('rating').aggregate(Avg('rating'))
+    # def get_test(self, obj):
+    #     if obj.rating.exists():
+    #         obj2 = feedback.objects.filter(item=obj).values('rating').aggregate(Avg('rating'))
             
-            return obj2
-        else:
-            return 0
+    #         return obj2
+    #     else:
+    #         return 0
 
-    def get_rating_count(self, obj):
-        if obj.rating.exists():
-            return obj.rating.first().count
-        else:
-            return 0
+    # def get_rating_count(self, obj):
+    #     if obj.rating.exists():
+    #         return obj.rating.first().count
+    #     else:
+    #         return 0
 
 
 class Course_listSerializer1(serializers.HyperlinkedModelSerializer):
