@@ -168,7 +168,7 @@ django-star-ratings==0.9.1
 djangorave==0.1.1
 django-taggit==1.1.0
 django-webpush==0.3.4
-djangorestframework==3.9.2
+djangorestframework==3.10.3
 django-extensions==3.0.8
 django-classy-tags==1.0.0
 django-cors-headers==3.4.0
